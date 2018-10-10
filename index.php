@@ -4,6 +4,11 @@ require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
 use Sunra\PhpSimple\HtmlDomParser;
 
+define('DB_HOST', '127.0.0.1');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'parse');
+
 function get_article_data($url) {
     $parser = new HtmlDomParser;
 
