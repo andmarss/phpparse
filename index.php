@@ -1,13 +1,20 @@
 <?php
 
 require_once(dirname(__FILE__) . '/vendor/autoload.php');
+require_once(dirname(__FILE__) . '/app/db/DB.php');
+
 
 use Sunra\PhpSimple\HtmlDomParser;
+use App\DB;
 
 define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'parse');
+
+$db = new DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+var_dump($db->query('show tables')); die;
 
 function get_article_data($url) {
     $parser = new HtmlDomParser;
