@@ -7,15 +7,6 @@ require_once(dirname(__FILE__) . '/app/db/DB.php');
 use Sunra\PhpSimple\HtmlDomParser;
 use App\DB;
 
-// db settings
-define('DB_HOST', '127.0.0.1');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'parse');
-
-// connection to db
-$db = new DB(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
 /**
  * @param $url
  * @param DB $db

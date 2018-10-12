@@ -4,10 +4,12 @@ namespace App;
 class DB
 {
     protected $db_handler;
+    protected static $pdo;
 
     public function __construct($config)
     {
         $this->db_handler = new \PDO($config['connection'] . $config['name'], $config['username'], $config['password'], $config['options']);
+        static::$pdo = new \PDO($config['connection'] . $config['name'], $config['username'], $config['password'], $config['options']);
     }
 
     public function execute(string $sql, array $data = [])
@@ -75,5 +77,10 @@ class DB
         } catch (\Exception $e) {
             die('Whoops, something went wrong');
         }
+    }
+
+    public static function escape_string(string $string)
+    {
+        return static::$pdo->quote($string);
     }
 }
