@@ -5,9 +5,9 @@ class DB
 {
     protected $db_handler;
 
-    public function __construct($host, $user, $pw, $db_name)
+    public function __construct($config)
     {
-        $this->db_handler = new \PDO("mysql:host={$host};dbname={$db_name}", $user, $pw);
+        $this->db_handler = new \PDO($config['connection'] . $config['name'], $config['username'], $config['password'], $config['options']);
     }
 
     public function execute(string $sql, array $data = [])
@@ -30,7 +30,7 @@ class DB
         $result = $sth->execute($data);
 
         if(!$result) {
-            var_dump($sth->errorInfo() ); die;
+            var_dump($sth->errorInfo()); die;
         }
 
         return (is_null($class)) ? $sth->fetchAll() : $sth->fetchAll(\PDO::FETCH_CLASS, $class);
@@ -44,5 +44,36 @@ class DB
     public function escape(string $string)
     {
         return $this->db_handler->quote($string);
+    }
+
+    public function selectAll($table, $intoClass = null)
+    {
+        $statement = $this->db_handler->prepare("select * from {$table}");
+
+        $statement->execute();
+
+        return isset($intoClass)
+            ?
+            $statement->fetchAll(\PDO::FETCH_CLASS, $intoClass)
+            :
+            $statement->fetchAll(\PDO::FETCH_CLASS);
+    }
+
+    public function insert($table, $data)
+    {
+        $sql = sprintf(
+            'insert into %s ($s) values (%s)',
+            $table,
+            implode(', ', array_keys($data)),
+            ':' . implode(', :', array_keys($data))
+        );
+
+        try {
+            $statement = $this->db_handler->prepare($sql);
+
+            $statement->execute($data);
+        } catch (\Exception $e) {
+            die('Whoops, something went wrong');
+        }
     }
 }
