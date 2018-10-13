@@ -11,3 +11,5 @@ $config = [
         ]
     ]
 ];
+
+return $config;

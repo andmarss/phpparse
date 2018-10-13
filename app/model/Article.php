@@ -6,9 +6,9 @@
  * Time: 18:47
  */
 
-namespace App;
+namespace App\Model;
 
-use \App\Model;
+use App\Model\Model;
 
 
 class Article extends Model

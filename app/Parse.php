@@ -1,4 +1,6 @@
 <?php
+namespace App;
+
 /**
  * Created by PhpStorm.
  * User: delux
@@ -6,36 +8,77 @@
  * Time: 17:06
  */
 use Sunra\PhpSimple\HtmlDomParser;
-use \App\DB;
-
-require_once(dirname(__FILE__) . '../config.php');
+use App\DB\DB;
+use App\Model\Article;
 
 class Parse
 {
     protected $url;
     protected $parser;
     protected $article;
+    protected $html;
 
-    public function __construct($url)
+    public function __construct(string $url = '')
     {
         $this->url = $url;
         $this->parser = new HtmlDomParser();
-        $this->article = new \App\Article();
     }
 
-    public function get_article()
+    public function get_article_data()
     {
+        echo '<pre>' . print_r('4) this->url ' . $this->url, true) . '</pre>' . "\n";
+        // get content from url
+        $html = file_get_contents($this->url);
+
+        // create an object from usual string
+        $article = $this->parser->str_get_html($html);
+
+        Article::create([
+            'h1' => $article->find('h1', 0)->innertext,
+            'content' => $article->find('article', 0)->innertext,
+            'date_parsed' => date('Y-m-d H:i:s'),
+            'url' => $this->url
+        ]);
+
+        return $this;
+    }
+
+    public function set_url(string $url = '')
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function get_articles()
+    {
+        echo '<pre>' . print_r('1) this->url ' . $this->url, true) . '</pre>' . "\n";
         // get content from url
         $hrml = file_get_contents($this->url);
 
         // create an object from usual string
-        $article = $this->parser->str_get_html($hrml);
+        $dom = $this->parser->str_get_html($hrml);
 
-        // get h1 text from article
-        $h1 = DB::escape_string($article->find('h1', 0)->innertext);
-        // get content from article
-        $content = DB::escape_string($article->find('article', 0)->innertext);
+        // get each article link
+        foreach ($dom->find('a.read-more-link') as $link) {
+            // Each article link - add to db
 
-        
+            //save new href
+            $this->set_url($link->href);
+
+            echo '<pre>' . print_r('2) this->url ' . $this->url, true) . '</pre>' . "\n";
+
+            // Parse and save current article by link
+            $this->get_article_data();
+        }
+
+        // recursion to next page
+        if($next_link = $dom->find('a.next', 0)) {
+            $this->set_url($next_link->href);
+
+            echo '<pre>' . print_r('3) this->url ' . $this->url, true) . '</pre>' . "\n";
+
+            $this->get_articles();
+        }
     }
 }
