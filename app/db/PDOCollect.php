@@ -1,29 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: delux
- * Date: 15.10.2018
- * Time: 17:11
- */
 
 namespace App\DB;
 
 use \App\Collect;
 
-
 class PDOCollect extends Collect
 {
-    protected $collection;
+    protected $table;
 
-    public function __construct(\Countable $countable)
-    {
-        $this->collection = $countable;
-    }
-
-    public function where($condition, $value = null)
+    public function where(...$condition)
     {
         if (is_array($condition) && (count($condition) > 0)) {
-
+            foreach ($condition as $key => $item){
+                $this->collection = $this->filter(function ($object) use ($key, $item){
+                    if(property_exists($object, $key)) {
+                        return $object->{$key} == $item;
+                    }
+                });
+            }
         }
+
+        return $this;
+    }
+
+    public function limit($length, $offset = 0)
+    {
+        $this->collection = array_slice($this->collection, $offset, $length);
+
+        return $this;
     }
 }

@@ -1,14 +1,18 @@
 <?php
 namespace App\DB;
 
-class DB
+use App\DB\PDOCollect;
+
+class DB extends PDOCollect
 {
     protected $db_handler;
     protected static $pdo;
 
     public function __construct($config)
     {
+        parent::__construct([]);
         static::$pdo = new \PDO($config['connection'] . $config['name'], $config['username'], $config['password'], $config['options']);
+        static::$pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         $this->db_handler = static::$pdo;
     }
 
@@ -53,7 +57,30 @@ class DB
             var_dump($sth->errorInfo()); die;
         }
 
-        return (is_null($class)) ? $sth->fetchAll() : $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+        return (is_null($class)) ? $sth->fetchAll(\PDO::FETCH_CLASS) : $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+    }
+
+    public static function query_string(string $sql, array $data = [], $class = null)
+    {
+        try {
+            static::$pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, TRUE);
+
+            $sth = static::$pdo->prepare($sql);
+
+            $result = $sth->execute($data);
+
+            if(!$result) {
+                var_dump($sth->errorInfo()); die;
+            };
+
+            return $sth;
+        } catch (\Exception $e) {
+            echo print_r($e->getMessage(), true) . "\n";
+            echo print_r($e->getTraceAsString(), true) . "\n";
+            echo print_r($e->getFile(), true) . "\n";
+            echo print_r($e->getCode(), true) . "\n";
+            echo print_r($e->getLine(), true) . "\n"; die;
+        }
     }
 
     /**
@@ -147,13 +174,18 @@ class DB
             var_dump($pdo_statement->errorInfo()); die();
         }
 
-        return (!$class) ? $pdo_statement->fetchAll(\PDO::FETCH_CLASS, static::class) : $pdo_statement->fetchAll(\PDO::FETCH_CLASS, $class);
+        return (!$class) ? $pdo_statement->fetchAll(\PDO::FETCH_CLASS) : $pdo_statement->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
     static function table($name)
     {
-        return static::get_table($name, static::class);
+        return PDOCollect::make(static::get_table($name, substr(ucfirst($name), 0, mb_strlen($name)-1)));
     }
 
+    protected function collect(array $array)
+    {
+        $this->collection = new PDOCollect($array);
 
+        return $this;
+    }
 }

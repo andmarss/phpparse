@@ -99,7 +99,6 @@ abstract class Model
 
     public function update($condition = null, $value = null)
     {
-        var_dump('update');
         if (is_array($condition)) {
             $columns = [];
             $data = [];
@@ -172,7 +171,6 @@ abstract class Model
 
     public function updateWhere(array $whereArray = [], array $updateData = [])
     {
-        var_dump('updateWhere');
         if($this->isNew()){
             $columns = [];
             $data = [];
@@ -274,8 +272,6 @@ abstract class Model
                (' . implode(', ', $binds) . ')';
 
         $result = static::$database->execute($sql, $data);
-
-        echo print_r('RESULT' . $result, true) . "\n";
 
         $id = static::$database->lastInsertId();
 

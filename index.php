@@ -18,9 +18,23 @@ if($argv[1] === 'parse') {
             // get random hash
             $tmp_uniq = md5(uniqid() . time());
 
-            DB::query("UPDATE articles SET tmp_uniq = '{$tmp_uniq}' WHERE tmp_uniq IS NULL LIMIT " . DB::escape_string(App::get('per_block')));
+            $articles = DB::table('articles')->where('tmp_uniq', null)->get();
 
-            $parser->get_article_data();
+            if(!$articles) {
+                echo 'All done!';
+            }
+
+            while (true) {
+
+            }
+
+            $articles->each(function ($article) use ($parser){
+                $parser->set_url($article->url);
+
+                $parser->get_article_data();
+            });
+
+            DB::query("UPDATE articles SET tmp_uniq = '{$tmp_uniq}' WHERE tmp_uniq IS NULL LIMIT " . DB::escape_string(App::get('per_block')));
             break;
     }
 }

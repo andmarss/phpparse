@@ -26,7 +26,6 @@ class Parse
 
     public function get_article_data()
     {
-        echo '<pre>' . print_r('4) this->url ' . $this->url, true) . '</pre>' . "\n";
         // get content from url
         $html = file_get_contents($this->url);
 
@@ -52,7 +51,6 @@ class Parse
 
     public function get_articles()
     {
-        echo '<pre>' . print_r('1) this->url ' . $this->url, true) . '</pre>' . "\n";
         // get content from url
         $hrml = file_get_contents($this->url);
 
@@ -66,8 +64,6 @@ class Parse
             //save new href
             $this->set_url($link->href);
 
-            echo '<pre>' . print_r('2) this->url ' . $this->url, true) . '</pre>' . "\n";
-
             // Parse and save current article by link
             $this->get_article_data();
         }
@@ -76,9 +72,18 @@ class Parse
         if($next_link = $dom->find('a.next', 0)) {
             $this->set_url($next_link->href);
 
-            echo '<pre>' . print_r('3) this->url ' . $this->url, true) . '</pre>' . "\n";
-
             $this->get_articles();
         }
+    }
+
+    public function set_tmp_uniq()
+    {
+        Article::set_tmp_uniq(function ($articles){
+            foreach ($articles as $article) {
+                $this->set_url($article->url);
+
+                $this->get_article_data();
+            }
+        });
     }
 }

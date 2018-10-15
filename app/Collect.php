@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: delux
- * Date: 15.10.2018
- * Time: 17:14
- */
 
 namespace App;
 
+use App\Interfaces\ArrayAccess;
 
-class Collect implements \Countable
+class Collect implements \Countable, ArrayAccess
 {
     protected $collection;
 
@@ -35,7 +30,9 @@ class Collect implements \Countable
             $result[] = $func($item, $key, $this->collection);
         }
 
-        return new static($result);
+        $this->collection = $result;
+
+        return $this;
     }
 
     public function filter(\Closure $func)
@@ -48,7 +45,9 @@ class Collect implements \Countable
             }
         }
 
-        return new static($result);
+        $this->collection = $result;
+
+        return $this;
     }
 
     public function search($condition, $strict = false)
@@ -72,7 +71,7 @@ class Collect implements \Countable
 
             return $find;
         } elseif (is_callable($condition)) {
-            return count($this->filter($condition));
+            return $this->filter($condition)->count();
         }
     }
 
@@ -86,7 +85,9 @@ class Collect implements \Countable
             }
         }
 
-        return new static($result);
+        $this->collection = $result;
+
+        return $this;
     }
 
     public function reduce(\Closure $func, $initial)
@@ -97,7 +98,13 @@ class Collect implements \Countable
             $accumulator = $func($accumulator, $item);
         }
 
-        return is_array($accumulator) ? new static($accumulator) : $accumulator;
+        if(is_array($accumulator)) {
+            $this->collection = $accumulator;
+
+            return $this;
+        }
+
+        return $accumulator;
     }
 
     public function sum(\Closure $func)
@@ -110,5 +117,96 @@ class Collect implements \Countable
     public function count()
     {
         return count($this->collection);
+    }
+
+    public static function make($items)
+    {
+        return new static($items);
+    }
+
+    public function offsetExists($offset)
+    {
+        return array_key_exists($offset, $this->collection);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->collection[$offset];
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        if(!is_null($offset)) {
+            $this->collection[] = $offset;
+        } else {
+            $this->collection[$offset] = $value;
+        }
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->collection[$offset]);
+    }
+
+    public function every(\Closure $func)
+    {
+        foreach ($this->collection as $key => $item) {
+            if(!$func($item, $key, $this->collection)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function some(\Closure $func)
+    {
+        $i = 0;
+
+        foreach ($this->collection as $key => $item) {
+            if($func($item, $key, $this->collection)) {
+                $i++;
+            }
+        }
+
+        return $i !== 0;
+    }
+
+    public function get()
+    {
+        return new static($this->collection);
+    }
+
+    public function all()
+    {
+        return $this->collection;
+    }
+
+    public function values()
+    {
+        $this->collection = array_values($this->collection);
+
+        return $this;
+    }
+
+    public function keys()
+    {
+        $this->collection = array_keys($this->collection);
+
+        return $this;
+    }
+
+    public function sortBy()
+    {
+        $this->collection = array_multisort($this->collection, SORT_ASC, SORT_REGULAR);
+
+        return $this;
+    }
+
+    public function sortByDesc()
+    {
+        $this->collection = array_multisort($this->collection, SORT_DESC, SORT_REGULAR);
+
+        return $this;
     }
 }
