@@ -15,4 +15,6 @@ App::bind('config' , require_once(__DIR__ . str_replace('/', DIRECTORY_SEPARATOR
 
 App::bind('database', new DB(App::get('config')['DB']));
 
+App::bind('per_block', 5);
+
 return App::get('database');

@@ -136,4 +136,24 @@ class DB
     {
         return static::$pdo->quote($string);
     }
+
+    protected static function get_table($name, $class = null)
+    {
+        $pdo_statement = static::$pdo->prepare('SELECT * FROM ' . $name);
+
+        $result = $pdo_statement->execute();
+
+        if(!$result) {
+            var_dump($pdo_statement->errorInfo()); die();
+        }
+
+        return (!$class) ? $pdo_statement->fetchAll(\PDO::FETCH_CLASS, static::class) : $pdo_statement->fetchAll(\PDO::FETCH_CLASS, $class);
+    }
+
+    static function table($name)
+    {
+        return static::get_table($name, static::class);
+    }
+
+
 }
