@@ -97,6 +97,61 @@ class Parse
         return count($dom->find('div.stocks span')) > 0;
     }
 
+    public function krug_articles()
+    {
+        $hrml = file_get_contents($this->url);
+
+        // create an object from usual string
+        $dom = $this->parser->str_get_html($hrml);
+        $skills = ['php', 'javascript', 'react.js', 'react', 'redux', 'laravel'];
+
+        foreach ($dom->find('div.job') as $job) {
+            $title = trim($job->find('.title a')->plaintext);
+            $specialization = $job->find('.specialization a');
+            $skills_list = $job->find('.skills .skill');
+            $salary = $job->find('.salary .count b');
+
+            echo 'Вакансия: ' . $title . "\n";
+
+            echo 'Специализация: ' . "\n";
+
+            if(count($specialization) > 0) {
+                foreach ($specialization as $key => $value) {
+                    echo ($key + 1) . ') ' . trim($value->plaintext) . "\n";
+                }
+            }
+
+            echo 'Требуемые навыки: ' . "\n";
+
+            if(count($skills_list) > 0) {
+                foreach ($skills_list as $key => $s) {
+                    echo ($key + 1) . ') ' . trim($s->plaintext) . "\n";
+                }
+            }
+
+            echo 'Зарплата: ' . "\n";
+
+            foreach ($salary as $b) {
+                echo trim($b->plaintext) . "\n";
+            }
+
+            echo "\n\n";
+
+            echo '============================' . "\n\n\n";
+        }
+
+        if($next_link = $dom->find('a.next_page', 0)) {
+            if(isset($next_link->href)) {
+                echo 'Следующая страница найдена ' . "\n";
+                $this->set_url('https://moikrug.ru' . $next_link->href);
+
+                $this->krug_articles();
+            }
+        } else {
+            echo 'Next link not found'; die;
+        }
+    }
+
     public function wait($num, $mod = 's')
     {
         switch ($mod) {

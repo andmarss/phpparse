@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88a262d4-0ba7-462c-8285-767ecfc2821d" name="Default" comment="Парсер переписан на ООП">
+    <list default="true" id="88a262d4-0ba7-462c-8285-767ecfc2821d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../phpparse/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/app/Parse.php" afterPath="$PROJECT_DIR$/../../phpparse/app/Parse.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/app/db/PDOCollect.php" afterPath="$PROJECT_DIR$/../../phpparse/app/db/PDOCollect.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/index.php" afterPath="$PROJECT_DIR$/../../phpparse/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="Parse.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../phpparse/app/Parse.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-272">
-              <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+            <state relative-caret-position="405">
+              <caret line="147" column="39" lean-forward="true" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="39" />
               <folding>
                 <element signature="e#104#138#0#PHP" expanded="true" />
               </folding>
@@ -31,8 +30,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../phpparse/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+            <state relative-caret-position="340">
+              <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -90,8 +89,8 @@
         <option value="$PROJECT_DIR$/../../../phpparse/app/db/PDOCollect.php" />
         <option value="$PROJECT_DIR$/../../../phpparse/app/Parse.php" />
         <option value="$PROJECT_DIR$/../../../phpparse/index.php" />
-        <option value="$PROJECT_DIR$/../../phpparse/app/Parse.php" />
         <option value="$PROJECT_DIR$/../../phpparse/index.php" />
+        <option value="$PROJECT_DIR$/../../phpparse/app/Parse.php" />
       </list>
     </option>
   </component>
@@ -202,7 +201,7 @@
       <workItem from="1539629888856" duration="7619000" />
       <workItem from="1539713559218" duration="611000" />
       <workItem from="1539714949672" duration="4108000" />
-      <workItem from="1539723801406" duration="2913000" />
+      <workItem from="1539723801406" duration="5711000" />
     </task>
     <task id="LOCAL-00001" summary="создание рекурсивной парсинг-функции">
       <created>1539213837320</created>
@@ -239,11 +238,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539640400198</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Обновление парсера для проверки нужного сайта">
+      <created>1539726776334</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1539726776334</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60181000" />
+    <option name="totallyTimeSpent" value="62979000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -284,7 +290,8 @@
     <MESSAGE value="Добавление настроек БД" />
     <MESSAGE value="Перенос парсера с процедуры на ООП" />
     <MESSAGE value="Добавлен интерфейс ArrayAccess, класс Collection, и класс PDOCollect" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен интерфейс ArrayAccess, класс Collection, и класс PDOCollect" />
+    <MESSAGE value="Обновление парсера для проверки нужного сайта" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновление парсера для проверки нужного сайта" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -331,16 +338,16 @@
     <entry file="file://$PROJECT_DIR$/../../../phpparse/index.php" />
     <entry file="file://$PROJECT_DIR$/../../phpparse/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+        <state relative-caret-position="340">
+          <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../phpparse/app/Parse.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+        <state relative-caret-position="405">
+          <caret line="147" column="39" lean-forward="true" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="39" />
           <folding>
             <element signature="e#104#138#0#PHP" expanded="true" />
           </folding>

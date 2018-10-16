@@ -6,7 +6,7 @@ require_once __DIR__ . '/app/bootstrap.php';
 use App\Parse;
 use App\DB\DB;
 
-$parser = new Parse('https://luga.shop/sosna-iskusstvennaya-180-sm-art-2018-136-v-podarok-podstavka/');
+$parser = new Parse('https://moikrug.ru/vacancies?_=1539728509237&city_id=&company_id=&company_name=&currency=rur&division_ids%5B%5D=&divisions%5B%5D=backend&divisions%5B%5D=frontend&employment_type=&location=&q=&qid=4&remote=1&salary=&skills_finder=&type=all&utf8=%E2%9C%93');
 
 if($argv[1] === 'parse') {
     switch ($argv[2]) {
@@ -43,6 +43,14 @@ if($argv[1] === 'parse') {
 
                     $parser->wait(10, 'm');
                 }
+            }
+            break;
+
+        case 'moikrug':
+            while (true) {
+                $parser->krug_articles();
+
+                $parser->wait(60, 'm');
             }
             break;
 
