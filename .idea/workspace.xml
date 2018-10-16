@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88a262d4-0ba7-462c-8285-767ecfc2821d" name="Default" comment="" />
+    <list default="true" id="88a262d4-0ba7-462c-8285-767ecfc2821d" name="Default" comment="Парсер переписан на ООП">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../phpparse/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/app/Parse.php" afterPath="$PROJECT_DIR$/../../phpparse/app/Parse.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/app/db/PDOCollect.php" afterPath="$PROJECT_DIR$/../../phpparse/app/db/PDOCollect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../phpparse/index.php" afterPath="$PROJECT_DIR$/../../phpparse/index.php" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,22 +15,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.php">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Parse.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../phpparse/app/Parse.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="26" />
-              <folding />
+            <state relative-caret-position="-272">
+              <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+              <folding>
+                <element signature="e#104#138#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HtmlDomParser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/sunra/php-simple-html-dom-parser/Src/Sunra/PhpSimple/HtmlDomParser.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../phpparse/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="40" />
+            <state relative-caret-position="459">
+              <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -33,10 +40,58 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>список</find>
+      <find>../</find>
+      <find>autoload.</find>
+      <find>DIRECTORY_SEPARATOR</find>
+      <find>App\DB</find>
+      <find>$this-&gt;article</find>
+      <find>db</find>
+      <find>$this-&gt;</find>
+      <find>spri</find>
+      <find>query</find>
+      <find>var_dum</find>
+      <find>static::$database-&gt;execute</find>
+      <find>$this-&gt;db</find>
+      <find>get_article_data</find>
+      <find>-&gt;update</find>
+      <find>config.</find>
+      <find>get_article</find>
+      <find>RESULT</find>
+      <find>var_dump</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../phpparse" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/index.php" />
+        <option value="C:/phpparse/app/App.php" />
+        <option value="C:/phpparse/vendor/composer/autoload_static.php" />
+        <option value="C:/phpparse/composer.json" />
+        <option value="C:/phpparse/config.php" />
+        <option value="C:/phpparse/app/db/QueryBuilder.php" />
+        <option value="C:/phpparse/app/model/Model.php" />
+        <option value="C:/phpparse/app/bootstrap.php" />
+        <option value="C:/phpparse/app/Parse.php" />
+        <option value="C:/phpparse/index.php" />
+        <option value="C:/phpparse/app/db/DB.php" />
+        <option value="C:/phpparse/app/model/Article.php" />
+        <option value="C:/phpparse/app/interfaces/ArrayAccess.php" />
+        <option value="C:/phpparse/app/Collect.php" />
+        <option value="C:/phpparse/index.php" />
+        <option value="C:/phpparse/app/db/PDOCollect.php" />
+        <option value="C:/phpparse/app/db/DB.php" />
+        <option value="C:/phpparse/app/db/PDOCollect.php" />
+        <option value="$PROJECT_DIR$/../../../phpparse/app/db/DB.php" />
+        <option value="$PROJECT_DIR$/../../../phpparse/app/db/PDOCollect.php" />
+        <option value="$PROJECT_DIR$/../../../phpparse/app/Parse.php" />
+        <option value="$PROJECT_DIR$/../../../phpparse/index.php" />
+        <option value="$PROJECT_DIR$/../../phpparse/app/Parse.php" />
+        <option value="$PROJECT_DIR$/../../phpparse/index.php" />
       </list>
     </option>
   </component>
@@ -55,11 +110,12 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-189" />
-    <option name="y" value="-27" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -75,6 +131,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -86,57 +143,34 @@
             <path>
               <item name="phpparse" type="b2602c69:ProjectViewProjectNode" />
               <item name="phpparse" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="phpparse" type="b2602c69:ProjectViewProjectNode" />
               <item name="phpparse" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="sunra" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="db" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="phpparse" type="b2602c69:ProjectViewProjectNode" />
               <item name="phpparse" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="sunra" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php-simple-html-dom-parser" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="interfaces" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="phpparse" type="b2602c69:ProjectViewProjectNode" />
               <item name="phpparse" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="sunra" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php-simple-html-dom-parser" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Src" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="phpparse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="phpparse" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="sunra" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php-simple-html-dom-parser" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sunra" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="phpparse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="phpparse" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="sunra" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php-simple-html-dom-parser" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Sunra" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PhpSimple" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
@@ -163,36 +197,78 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539211872970</updated>
-      <workItem from="1539211874333" duration="585000" />
+      <workItem from="1539211874333" duration="5078000" />
+      <workItem from="1539367230564" duration="39852000" />
+      <workItem from="1539629888856" duration="7619000" />
+      <workItem from="1539713559218" duration="611000" />
+      <workItem from="1539714949672" duration="4108000" />
+      <workItem from="1539723801406" duration="2913000" />
     </task>
+    <task id="LOCAL-00001" summary="создание рекурсивной парсинг-функции">
+      <created>1539213837320</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1539213837320</updated>
+    </task>
+    <task id="LOCAL-00002" summary="+ функция для перехода по статьям и парсинга данных статьи">
+      <created>1539214873034</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1539214873034</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Добавление настроек БД">
+      <created>1539214908605</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1539214908605</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Перенос парсера с процедуры на ООП">
+      <created>1539467672214</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1539467672225</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Добавлен интерфейс ArrayAccess, класс Collection, и класс PDOCollect">
+      <created>1539640400198</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1539640400198</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="585000" />
+    <option name="totallyTimeSpent" value="60181000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30769232" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24924472" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -202,24 +278,72 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="создание рекурсивной парсинг-функции" />
+    <MESSAGE value="+ функция для перехода по статьям и парсинга данных статьи" />
+    <MESSAGE value="Добавление настроек БД" />
+    <MESSAGE value="Перенос парсера с процедуры на ООП" />
+    <MESSAGE value="Добавлен интерфейс ArrayAccess, класс Collection, и класс PDOCollect" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен интерфейс ArrayAccess, класс Collection, и класс PDOCollect" />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/sunra/php-simple-html-dom-parser/Src/Sunra/PhpSimple/HtmlDomParser.php">
+    <entry file="file://C:/phpparse/index.php" />
+    <entry file="file://C:/phpparse/vendor/sunra/php-simple-html-dom-parser/Src/Sunra/PhpSimple/HtmlDomParser.php" />
+    <entry file="file://$USER_HOME$/Downloads/document.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="40" />
+        <state relative-caret-position="-872">
+          <caret line="1" column="681041" lean-forward="false" selection-start-line="1" selection-start-column="681035" selection-end-line="1" selection-end-column="681041" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/phpparse/composer.lock" />
+    <entry file="file://C:/phpparse/vendor/composer/autoload_static.php" />
+    <entry file="file://C:/phpparse/composer.json" />
+    <entry file="file://C:/phpparse/config.php" />
+    <entry file="file://C:/phpparse/app/db/QueryBuilder.php" />
+    <entry file="file://C:/phpparse/vendor/sunra/php-simple-html-dom-parser/Src/Sunra/PhpSimple/HtmlDomParser.php" />
+    <entry file="file://C:/phpparse/app/App.php" />
+    <entry file="file://C:/phpparse/app/bootstrap.php" />
+    <entry file="file://C:/phpparse/app/model/Model.php" />
+    <entry file="file://C:/phpparse/app/db/DB.php" />
+    <entry file="file://C:/phpparse/index.php" />
+    <entry file="file://C:/phpparse/app/Parse.php" />
+    <entry file="file://C:/phpparse/app/model/Article.php" />
+    <entry file="file://C:/phpparse/app/interfaces/ArrayAccess.php" />
+    <entry file="file://C:/phpparse/app/model/Model.php" />
+    <entry file="file://C:/phpparse/app/Parse.php" />
+    <entry file="file://C:/phpparse/app/model/Article.php" />
+    <entry file="file://C:/phpparse/index.php" />
+    <entry file="file://C:/phpparse/app/Collect.php" />
+    <entry file="file://C:/phpparse/app/db/PDOCollect.php" />
+    <entry file="file://C:/phpparse/app/db/DB.php" />
+    <entry file="file://C:/phpparse/app/db/PDOCollect.php" />
+    <entry file="file://$PROJECT_DIR$/../../../phpparse/app/Collect.php" />
+    <entry file="file://$PROJECT_DIR$/../../../phpparse/app/db/PDOCollect.php" />
+    <entry file="file://$PROJECT_DIR$/../../../phpparse/app/Parse.php" />
+    <entry file="file://$PROJECT_DIR$/../../../phpparse/app/db/DB.php" />
+    <entry file="file://$PROJECT_DIR$/../../../phpparse/index.php" />
+    <entry file="file://$PROJECT_DIR$/../../phpparse/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/../../phpparse/app/Parse.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="-272">
+          <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+          <folding>
+            <element signature="e#104#138#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

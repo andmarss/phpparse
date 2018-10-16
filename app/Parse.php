@@ -75,4 +75,42 @@ class Parse
             $this->get_articles();
         }
     }
+
+    public function get_lugashop_page_info()
+    {
+        // get content from url
+        $hrml = file_get_contents($this->url);
+
+        // create an object from usual string
+        $dom = $this->parser->str_get_html($hrml);
+
+        echo trim($dom->find('div.stocks span', 0)->plaintext) . "\n";
+    }
+
+    public function span_found()
+    {
+        $hrml = file_get_contents($this->url);
+
+        // create an object from usual string
+        $dom = $this->parser->str_get_html($hrml);
+
+        return count($dom->find('div.stocks span')) > 0;
+    }
+
+    public function wait($num, $mod = 's')
+    {
+        switch ($mod) {
+            case 'ms':
+                sleep($num / 1000);
+                break;
+            case 's':
+                sleep($num);
+                break;
+            case 'm':
+                sleep($num * 60);
+                break;
+        }
+
+        return $this;
+    }
 }

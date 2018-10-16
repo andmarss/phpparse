@@ -6,7 +6,7 @@ require_once __DIR__ . '/app/bootstrap.php';
 use App\Parse;
 use App\DB\DB;
 
-$parser = new Parse('http://ananaska.com/vse-novosti/');
+$parser = new Parse('https://luga.shop/sosna-iskusstvennaya-180-sm-art-2018-136-v-podarok-podstavka/');
 
 if($argv[1] === 'parse') {
     switch ($argv[2]) {
@@ -32,6 +32,18 @@ if($argv[1] === 'parse') {
                 }
             });
 
+            echo 'All done!'; die;
+
+            break;
+
+        case 'lugashop':
+            if($parser->span_found()) {
+                while (true) {
+                    $parser->get_lugashop_page_info();
+
+                    $parser->wait(10, 'm');
+                }
+            }
             break;
 
         default:
