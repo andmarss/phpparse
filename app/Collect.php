@@ -8,7 +8,7 @@ class Collect implements \Countable, ArrayAccess
 {
     protected $collection;
 
-    public function __construct(array $countable)
+    public function __construct($countable)
     {
         $this->collection = $countable;
     }
@@ -121,7 +121,7 @@ class Collect implements \Countable, ArrayAccess
 
     public static function make($items)
     {
-        return new static($items);
+        return (new static($items));
     }
 
     public function offsetExists($offset)
@@ -206,6 +206,13 @@ class Collect implements \Countable, ArrayAccess
     public function sortByDesc()
     {
         $this->collection = array_multisort($this->collection, SORT_DESC, SORT_REGULAR);
+
+        return $this;
+    }
+
+    public function chunk(int $num)
+    {
+        $this->collection = array_chunk((array) $this->collection, $num);
 
         return $this;
     }

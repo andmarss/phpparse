@@ -9,7 +9,7 @@ namespace App;
  */
 use Sunra\PhpSimple\HtmlDomParser;
 use App\DB\DB;
-use App\Model\Article;
+use App\Article;
 
 class Parse
 {
@@ -74,16 +74,5 @@ class Parse
 
             $this->get_articles();
         }
-    }
-
-    public function set_tmp_uniq()
-    {
-        Article::set_tmp_uniq(function ($articles){
-            foreach ($articles as $article) {
-                $this->set_url($article->url);
-
-                $this->get_article_data();
-            }
-        });
     }
 }

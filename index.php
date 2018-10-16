@@ -15,26 +15,27 @@ if($argv[1] === 'parse') {
             break;
         case 'article':
 
-            // get random hash
-            $tmp_uniq = md5(uniqid() . time());
-
             $articles = DB::table('articles')->where('tmp_uniq', null)->get();
 
             if(!$articles) {
-                echo 'All done!';
+                echo 'All done!'; die;
             }
 
-            while (true) {
+            $articles->chunk(10)->each(function ($chunk) use ($parser) {
+                // get random hash
+                $tmp_uniq = md5(uniqid() . time());
 
-            }
+                foreach ($chunk as $article) {
+                    $article->tmp_uniq = $tmp_uniq;
 
-            $articles->each(function ($article) use ($parser){
-                $parser->set_url($article->url);
+                    $article->save();
 
-                $parser->get_article_data();
+                    $parser->set_url($article->url);
+
+                    $parser->get_article_data();
+                }
             });
 
-            DB::query("UPDATE articles SET tmp_uniq = '{$tmp_uniq}' WHERE tmp_uniq IS NULL LIMIT " . DB::escape_string(App::get('per_block')));
             break;
     }
 }

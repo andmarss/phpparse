@@ -2,6 +2,7 @@
 namespace App\DB;
 
 use App\DB\PDOCollect;
+use App\Article;
 
 class DB extends PDOCollect
 {
@@ -28,7 +29,7 @@ class DB extends PDOCollect
     {
         $sth = $this->db_handler->prepare($sql);
 
-        $result = $sth->execute($data);
+        $result = (count($data) > 0) ? $sth->execute($data) : $sth->execute();
 
         if(!$result) {
             var_dump($sth->errorInfo()); die();
@@ -106,26 +107,26 @@ class DB extends PDOCollect
         return $this->db_handler->quote($string);
     }
 
-    /**
-     * @param $table
-     * @param null $intoClass
-     * @return mixed
-     *
-     * Function to find a collection of objects from DB
-     */
-
-    public function all($table, $intoClass = null)
-    {
-        $statement = $this->db_handler->prepare("select * from {$table}");
-
-        $statement->execute();
-
-        return isset($intoClass)
-            ?
-            $statement->fetchAll(\PDO::FETCH_CLASS, $intoClass)
-            :
-            $statement->fetchAll(\PDO::FETCH_CLASS);
-    }
+//    /**
+//     * @param $table
+//     * @param null $intoClass
+//     * @return mixed
+//     *
+//     * Function to find a collection of objects from DB
+//     */
+//
+//    public function all($table, $intoClass = null)
+//    {
+//        $statement = $this->db_handler->prepare("select * from {$table}");
+//
+//        $statement->execute();
+//
+//        return isset($intoClass)
+//            ?
+//            $statement->fetchAll(\PDO::FETCH_CLASS, $intoClass)
+//            :
+//            $statement->fetchAll(\PDO::FETCH_CLASS);
+//    }
 
     /**
      * @param $table
@@ -164,6 +165,14 @@ class DB extends PDOCollect
         return static::$pdo->quote($string);
     }
 
+    /**
+     * @param $name
+     * @param null $class
+     * @return mixed
+     *
+     * Function to find a collection of objects from DB
+     */
+
     protected static function get_table($name, $class = null)
     {
         $pdo_statement = static::$pdo->prepare('SELECT * FROM ' . $name);
@@ -179,7 +188,7 @@ class DB extends PDOCollect
 
     static function table($name)
     {
-        return PDOCollect::make(static::get_table($name, substr(ucfirst($name), 0, mb_strlen($name)-1)));
+        return PDOCollect::make(static::get_table($name, 'App\\' . substr(ucfirst($name), 0, mb_strlen($name)-1)));
     }
 
     protected function collect(array $array)

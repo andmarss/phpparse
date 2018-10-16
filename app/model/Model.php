@@ -12,7 +12,7 @@ abstract class Model
 
     public function __construct()
     {
-        static::$database = require_once(__DIR__ . '/../bootstrap.php');
+        static::$database = App::get('database');
     }
 
     /**
