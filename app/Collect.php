@@ -7,10 +7,12 @@ use App\Interfaces\ArrayAccess;
 class Collect implements \Countable, ArrayAccess
 {
     protected $collection;
+    protected $reserve_collection;
 
     public function __construct($countable)
     {
         $this->collection = $countable;
+        $this->reserve_collection = $countable;
     }
 
     public function each(\Closure $func)
@@ -196,18 +198,59 @@ class Collect implements \Countable, ArrayAccess
         return $this;
     }
 
-    public function sortBy()
+    public function sortBy($key)
     {
-        $this->collection = array_multisort($this->collection, SORT_ASC, SORT_REGULAR);
+        if(is_callable($key)) {
+            $collection = $this->collection;
 
-        return $this;
+            usort($collection, function ($first, $second) use ($key) {
+                return $key($first, $second);
+            });
+
+            $this->collection = $collection;
+
+            return $this;
+        } else {
+            $collection = (array) $this->filter(function ($obj) use ($key) {
+                return property_exists($obj, $key);
+            })->all();
+
+            usort($collection, function ($first, $second) use ($key) {
+                return $first->{$key} <=> $second->{$key};
+            });
+
+            $this->collection = $collection;
+
+            return $this;
+        }
     }
 
-    public function sortByDesc()
+    public function sortByDesc($key)
     {
-        $this->collection = array_multisort($this->collection, SORT_DESC, SORT_REGULAR);
 
-        return $this;
+        if(is_callable($key)) {
+            $collection = $this->collection;
+
+            usort($collection, function ($first, $second) use ($key) {
+                return $key($first, $second);
+            });
+
+            $this->collection = $collection;
+
+            return $this;
+        } else {
+            $collection = (array) $this->filter(function ($obj) use ($key) {
+                return property_exists($obj, $key);
+            })->all();
+
+            usort($collection, function ($first, $second) use ($key) {
+                return $second->{$key} <=> $first->{$key};
+            });
+
+            $this->collection = $collection;
+
+            return $this;
+        }
     }
 
     public function chunk(int $num)
@@ -215,5 +258,10 @@ class Collect implements \Countable, ArrayAccess
         $this->collection = array_chunk((array) $this->collection, $num);
 
         return $this;
+    }
+
+    public function first()
+    {
+        return isset($this->collection[0]) ? $this->collection[0] : null;
     }
 }

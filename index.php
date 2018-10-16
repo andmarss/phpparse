@@ -17,7 +17,7 @@ if($argv[1] === 'parse') {
 
             $articles = DB::table('articles')->where('tmp_uniq', null)->get();
 
-            if(!$articles) {
+            if($articles->count() === 0) {
                 echo 'All done!'; die;
             }
 
@@ -29,13 +29,47 @@ if($argv[1] === 'parse') {
                     $article->tmp_uniq = $tmp_uniq;
 
                     $article->save();
-
-                    $parser->set_url($article->url);
-
-                    $parser->get_article_data();
                 }
             });
 
             break;
+
+        default:
+            echo 'Command "parse ' . $argv[2] . '" not found';
+            break;
     }
+} elseif ($argv[1] === 'show'){
+    switch ($argv[2]) {
+        case 'id':
+
+            DB::table('articles')
+
+                ->where('id', '>=', 50)
+
+                ->sortBy('id')
+
+                ->limit(20)
+
+                ->each(function ($article){
+                    echo $article->id . "\n";
+                })
+
+                ->orWhere('id', '>=', 110)
+
+                ->sortByDesc('id')
+
+                ->limit(10)
+
+                ->each(function ($article){
+                    echo 'Or where: ' . $article->id . "\n";
+                });
+
+            break;
+
+        default:
+            echo 'Command "show ' . $argv[2] . '" not found';
+            break;
+    }
+} else {
+    echo 'Command "' . $argv[1] . '" not found';
 }
