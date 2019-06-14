@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 /**
@@ -7,6 +8,8 @@ namespace App;
  * Date: 12.10.2018
  * Time: 17:06
  */
+
+use App\App;
 use Sunra\PhpSimple\HtmlDomParser;
 use App\DB\DB;
 use App\Article;
@@ -17,11 +20,14 @@ class Parse
     protected $parser;
     protected $article;
     protected $html;
+    public $db;
 
     public function __construct(string $url = '')
     {
+        $config = App::get('config')['DB'];
         $this->url = $url;
         $this->parser = new HtmlDomParser();
+        $this->db = new \PDO($config['connection'] . $config['name'], $config['username'], $config['password'], $config['options']);
     }
 
     public function get_article_data()
@@ -149,6 +155,75 @@ class Parse
             }
         } else {
             echo 'Next link not found'; die;
+        }
+    }
+
+    public function find_images(array &$links = [])
+    {
+        echo 'Start searching in url ' . $this->url . "\n";
+
+        if(in_array($this->url, $links)) return;
+
+        $links[] = $this->url;
+
+        /**
+         * @var string $html
+         */
+        $html = file_get_contents($this->url);
+
+        if(!$html) return;
+
+        // create an object from usual string
+        $dom = $this->parser->str_get_html($html);
+
+        if(!$dom) return;
+
+        $imgs_elements = $dom->find('img');
+
+        if($imgs_elements) {
+
+            foreach ($imgs_elements as $img) {
+                $statement = $this->db->query("SELECT src FROM images WHERE src LIKE '%" . $img->src . "%'", \PDO::FETCH_ASSOC);
+
+                if(!$statement->execute()) {
+                    die(var_dump($statement->errorInfo()));
+                }
+
+                if(count($statement->fetchAll()) > 0) continue;
+
+                $statement = $this->db->query("INSERT INTO images (src) VALUES (". $this->db->quote($img->src) . ")");
+
+                if(!$statement->execute()) {
+                    die(var_dump($statement->errorInfo()));
+                }
+            }
+
+        }
+
+        $links_elements = $dom->find('a');
+
+        foreach ($links_elements as $link) {
+            if(strpos($link->href, '/') !== 0
+                || $link->href === '/'
+                || $link->href === '#'
+                || in_array('https://zandz.com' . $link->href, $links)
+                || strpos(strtolower($link->href), 'tag[]=') !== false
+                || strpos(strtolower($link->href), 'tag=') !== false
+                || strpos(strtolower($link->href), 'jpg') !== false
+                || strpos(strtolower($link->href), 'jpeg') !== false
+                || strpos(strtolower($link->href), 'png') !== false
+                || strpos(strtolower($link->href), 'gif') !== false
+                || strpos(strtolower($link->href), 'pdf') !== false
+                || strpos(strtolower($link->href), 'rss.php') !== false
+                || mb_strlen($link->href) === 0
+                || strtolower($link->href) === '/ru'
+                || strpos(strtolower($link->href), 'route=experts/order') !== false) continue;
+
+            try {
+                $this->set_url('https://zandz.com' . $link->href)->find_images($links);
+            } catch (\Exception $e) {
+                continue;
+            }
         }
     }
 

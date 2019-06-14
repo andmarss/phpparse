@@ -4,9 +4,8 @@ require_once __DIR__  . '/vendor/autoload.php';
 require_once __DIR__ . '/app/bootstrap.php';
 
 use App\Parse;
-use App\DB\DB;
 
-$parser = new Parse('https://moikrug.ru/vacancies?_=1539728509237&city_id=&company_id=&company_name=&currency=rur&division_ids%5B%5D=&divisions%5B%5D=backend&divisions%5B%5D=frontend&employment_type=&location=&q=&qid=4&remote=1&salary=&skills_finder=&type=all&utf8=%E2%9C%93');
+$parser = new Parse('');
 
 if($argv[1] === 'parse') {
     switch ($argv[2]) {
@@ -48,10 +47,41 @@ if($argv[1] === 'parse') {
 
         case 'moikrug':
             while (true) {
-                $parser->krug_articles();
+                $parser
+                    ->set_url('https://moikrug.ru/vacancies?divisions%5B%5D=backend&divisions%5B%5D=frontend&currency=rur&with_salary=1')
+                    ->krug_articles();
 
                 $parser->wait(60, 'm');
             }
+            break;
+
+        case 'zandz':
+            $parser->set_url('https://zandz.com/ru/')->find_images();
+            break;
+
+        case 'zandz-show-images':
+            $statement = $parser->db->query("SELECT * FROM images");
+
+            if(!$statement->execute()) {
+                die(var_dump($statement->errorInfo()));
+            }
+
+            $images = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+            $table = "<table>";
+            $table .= "<th>";
+            $table .= "<td>src</td>";
+            $table .= "</th>";
+
+            foreach ($images as $image){
+                $table .= "<tr>";
+                $table .= "<td>{$image['src']}</td>";
+                $table .= "</tr>";
+            }
+
+            $table .= "</table>";
+
+            echo $table;
             break;
 
         default:
@@ -90,6 +120,39 @@ if($argv[1] === 'parse') {
             echo 'Command "show ' . $argv[2] . '" not found';
             break;
     }
-} else {
-    echo 'Command "' . $argv[1] . '" not found';
 }
+
+$statement = $parser->db->query("SELECT DISTINCT src FROM images");
+
+if(!$statement->execute()) {
+    die(var_dump($statement->errorInfo()));
+}
+
+$images = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+$table = "<table>";
+$table .= "<tr>";
+// $table .= "<th align='center'>id</th>";
+$table .= "<th align='center'>src</th>";
+$table .= '</tr>';
+
+foreach ($images as $key => $image){
+    if(strpos($image['src'], '/') !== 0) continue;
+
+    $i = $key+1;
+
+    preg_match('/[a-z0-9\-\_]+\.[jpg|jpeg|gif|png]+/i', $image['src'], $m);
+
+    if($m && isset($m[0])) {
+        $image['src'] = $m[0];
+    }
+
+    $table .= "<tr>";
+    //$table .= "<td align='center'>{$i}</td>";
+    $table .= "<td align='center'>{$image['src']}</td>";
+    $table .= "</tr>";
+}
+
+$table .= "</table>";
+
+echo $table;

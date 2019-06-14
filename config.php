@@ -1,6 +1,6 @@
 <?php
 
-$config = [
+return [
     'DB' => [
         'name' => ';dbname=parse',
         'username' => 'root',
@@ -12,5 +12,3 @@ $config = [
         ]
     ]
 ];
-
-return $config;
